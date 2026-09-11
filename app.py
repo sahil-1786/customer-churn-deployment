@@ -382,7 +382,6 @@ st.markdown(
         .info-box {
             display: block;
         }
-
     }
     </style>
     """,
@@ -398,74 +397,67 @@ with st.sidebar:
 
     st.markdown("## Model Information")
 
-    show_model_details = st.toggle(
-        "Show side panel",
-        value=True
+    st.write("")
+
+    st.markdown(
+        """
+        <span class="model-badge">
+        Logistic Regression
+        </span>
+        """,
+        unsafe_allow_html=True
     )
 
-    if show_model_details:
+    st.write("")
 
-        st.write("")
+    st.markdown(
+        """
+        <div class="side-panel small-text">
 
-        st.markdown(
-            """
-            <span class="model-badge">
-            Logistic Regression
-            </span>
-            """,
-            unsafe_allow_html=True
-        )
+        This application estimates the probability
+        that a telecom customer will churn.
 
-        st.write("")
+        <br><br>
 
-        st.markdown(
-            """
-            <div class="side-panel small-text">
+        <b>Decision threshold:</b> 0.35
 
-            This application estimates the probability
-            that a telecom customer will churn.
+        <br><br>
 
-            <br><br>
+        <b>Final test ROC-AUC:</b> 0.8414
 
-            <b>Decision threshold:</b> 0.35
+        <br>
 
-            <br><br>
+        <b>Final test PR-AUC:</b> 0.6532
 
-            <b>Final test ROC-AUC:</b> 0.8414
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-            <br>
+    st.markdown("---")
 
-            <b>Final test PR-AUC:</b> 0.6532
+    st.markdown("### Prediction Flow")
 
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+    st.markdown(
+        """
+        <div class="flow-list">
+            <div class="flow-step">Customer Data</div>
+            <div class="flow-step">Feature Engineering</div>
+            <div class="flow-step">Preprocessing</div>
+            <div class="flow-step">Logistic Regression</div>
+            <div class="flow-step">Churn Probability</div>
+            <div class="flow-step">Risk Classification</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-        st.markdown("---")
+    st.markdown("---")
 
-        st.markdown("### Prediction Flow")
-
-        st.markdown(
-            """
-            <div class="flow-list">
-                <div class="flow-step">Customer Data</div>
-                <div class="flow-step">Feature Engineering</div>
-                <div class="flow-step">Preprocessing</div>
-                <div class="flow-step">Logistic Regression</div>
-                <div class="flow-step">Churn Probability</div>
-                <div class="flow-step">Risk Classification</div>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-        st.markdown("---")
-
-        st.caption(
-            "Portfolio deployment demonstrating "
-            "an end-to-end machine-learning prediction workflow."
-        )
+    st.caption(
+        "Portfolio deployment demonstrating "
+        "an end-to-end machine-learning prediction workflow."
+    )
 
 
 # ============================================================
@@ -499,6 +491,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 # ============================================================
 # INPUT SECTION
