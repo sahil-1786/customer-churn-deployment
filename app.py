@@ -36,353 +36,190 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    :root {
-        color-scheme: light dark;
-        --app-bg: #f4f7fb;
-        --surface: #ffffff;
-        --surface-soft: #f8fafc;
-        --surface-raised: rgba(255, 255, 255, 0.88);
-        --text: #111827;
-        --muted: #5b6472;
-        --border: #d9e2ef;
-        --accent: #2563eb;
-        --accent-strong: #1d4ed8;
-        --accent-soft: #eaf1ff;
-        --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
-        --input-bg: #ffffff;
-        --success-bg: #ecfdf3;
-        --success-border: #74d99f;
-        --success-text: #14532d;
-        --warning-bg: #fffbeb;
-        --warning-border: #f2c94c;
-        --warning-text: #78350f;
-        --danger-bg: #fff1f2;
-        --danger-border: #f59ca6;
-        --danger-text: #881337;
-        --orange-bg: #fff7ed;
-        --orange-border: #fdba74;
-        --orange-text: #9a3412;
-    }
 
-    @media (prefers-color-scheme: dark) {
-        :root {
-            --app-bg: #0d1117;
-            --surface: #151b23;
-            --surface-soft: #0f1620;
-            --surface-raised: rgba(21, 27, 35, 0.90);
-            --text: #f3f6fb;
-            --muted: #a7b2c2;
-            --border: #2b3543;
-            --accent: #60a5fa;
-            --accent-strong: #93c5fd;
-            --accent-soft: rgba(96, 165, 250, 0.14);
-            --shadow: 0 18px 45px rgba(0, 0, 0, 0.34);
-            --input-bg: #111821;
-            --success-bg: rgba(22, 101, 52, 0.20);
-            --success-border: #2f9d5b;
-            --success-text: #bbf7d0;
-            --warning-bg: rgba(146, 64, 14, 0.22);
-            --warning-border: #d99b24;
-            --warning-text: #fde68a;
-            --danger-bg: rgba(153, 27, 27, 0.22);
-            --danger-border: #e87979;
-            --danger-text: #fecaca;
-            --orange-bg: rgba(154, 52, 18, 0.22);
-            --orange-border: #fb923c;
-            --orange-text: #fed7aa;
-        }
-    }
-
-    html, body, [data-testid="stAppViewContainer"] {
-        background:
-            radial-gradient(circle at top left, var(--accent-soft), transparent 34rem),
-            var(--app-bg);
-        color: var(--text);
-    }
+    /* Main page */
 
     .block-container {
-        max-width: 1320px;
-        padding: 2rem 2.25rem 3rem;
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+        max-width: 1350px;
     }
 
-    #MainMenu,
-    footer,
-    header[data-testid="stHeader"] {
+
+    /* Hide Streamlit default decoration */
+
+    #MainMenu {
         visibility: hidden;
     }
 
-    h1, h2, h3, h4, h5, h6,
-    p, label, span, div {
-        letter-spacing: 0;
+    footer {
+        visibility: hidden;
     }
 
-    .hero-panel {
-        background: var(--surface-raised);
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        box-shadow: var(--shadow);
-        padding: clamp(1.25rem, 3vw, 2rem);
-        margin-bottom: 1.25rem;
-    }
 
-    .eyebrow {
-        color: var(--accent-strong);
-        font-size: 0.78rem;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        margin-bottom: 0.55rem;
-        text-transform: uppercase;
-    }
+    /* Main heading */
 
     .main-title {
-        color: var(--text);
-        font-size: clamp(2rem, 4vw, 3.35rem);
-        font-weight: 800;
-        line-height: 1.05;
-        margin-bottom: 0.7rem;
+        font-size: 2.6rem;
+        font-weight: 750;
+        color: #0F172A;
+        margin-bottom: 0.2rem;
     }
 
     .subtitle {
-        color: var(--muted);
-        font-size: clamp(1rem, 1.6vw, 1.16rem);
-        line-height: 1.65;
-        max-width: 760px;
-        margin-bottom: 0;
+        font-size: 1rem;
+        color: #64748B;
+        margin-bottom: 1.6rem;
     }
 
-    .info-box {
-        align-items: flex-start;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-left: 4px solid var(--accent);
-        border-radius: 12px;
-        box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
-        color: var(--muted);
-        display: flex;
-        gap: 0.8rem;
-        line-height: 1.65;
-        margin-bottom: 1.75rem;
-        padding: 1rem 1.15rem;
-    }
 
-    .info-box b,
-    .risk-low b,
-    .risk-moderate b,
-    .risk-high b,
-    .risk-very-high b {
-        color: inherit;
-    }
+    /* Section headers */
 
     .section-title {
-        color: var(--text);
-        font-size: 1.18rem;
-        font-weight: 800;
-        margin: 1.4rem 0 0.9rem;
-    }
-
-    .section-title::after {
-        background: linear-gradient(90deg, var(--accent), transparent);
-        border-radius: 999px;
-        content: "";
-        display: block;
-        height: 3px;
-        margin-top: 0.5rem;
-        width: 4rem;
-    }
-
-    .model-badge {
-        background: var(--accent-soft);
-        border: 1px solid color-mix(in srgb, var(--accent) 34%, transparent);
-        border-radius: 999px;
-        color: var(--accent-strong);
-        display: inline-flex;
-        font-size: 0.82rem;
-        font-weight: 800;
-        padding: 0.38rem 0.78rem;
-    }
-
-    .side-panel {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 1rem;
-    }
-
-    .flow-list {
-        color: var(--muted);
-        display: grid;
-        gap: 0.4rem;
-        font-size: 0.9rem;
-        line-height: 1.45;
-    }
-
-    .flow-step {
-        align-items: center;
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .flow-step::before {
-        background: var(--accent);
-        border-radius: 999px;
-        content: "";
-        height: 0.45rem;
-        width: 0.45rem;
-    }
-
-    .risk-low,
-    .risk-moderate,
-    .risk-high,
-    .risk-very-high {
-        border-radius: 14px;
-        font-size: 1.03rem;
+        font-size: 1.30rem;
         font-weight: 700;
-        line-height: 1.55;
+        color: #0F172A;
         margin-top: 1rem;
-        padding: 1.15rem 1.25rem;
+        margin-bottom: 0.8rem;
     }
 
-    .risk-low {
-        background: var(--success-bg);
-        border: 1px solid var(--success-border);
-        color: var(--success-text);
-    }
 
-    .risk-moderate {
-        background: var(--warning-bg);
-        border: 1px solid var(--warning-border);
-        color: var(--warning-text);
-    }
+    /* Info box */
 
-    .risk-high {
-        background: var(--orange-bg);
-        border: 1px solid var(--orange-border);
-        color: var(--orange-text);
-    }
-
-    .risk-very-high {
-        background: var(--danger-bg);
-        border: 1px solid var(--danger-border);
-        color: var(--danger-text);
-    }
-
-    .stButton > button {
-        background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-        border: 0;
+    .info-box {
+        background-color: #F8FAFC;
+        border: 1px solid #E2E8F0;
         border-radius: 12px;
-        box-shadow: 0 14px 28px rgba(37, 99, 235, 0.24);
-        color: #ffffff;
-        font-size: 1rem;
-        font-weight: 800;
-        height: 3.35rem;
-        transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
-        width: 100%;
-    }
-
-    .stButton > button:hover {
-        box-shadow: 0 18px 34px rgba(37, 99, 235, 0.30);
-        color: #ffffff;
-        filter: brightness(1.04);
-        transform: translateY(-1px);
-    }
-
-    .stButton > button:active {
-        transform: translateY(0);
-    }
-
-    div[data-testid="stMetric"] {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
-        padding: 1rem 1.05rem;
-    }
-
-    div[data-testid="stMetric"] label,
-    div[data-testid="stMetric"] [data-testid="stMetricLabel"] {
-        color: var(--muted);
-        font-weight: 700;
-    }
-
-    div[data-testid="stMetricValue"] {
-        color: var(--text);
-        font-weight: 800;
-    }
-
-    div[data-testid="stSelectbox"] > div,
-    div[data-testid="stNumberInput"] > div {
-        background: transparent;
-    }
-
-    div[data-baseweb="select"] > div,
-    div[data-testid="stNumberInput"] input {
-        background-color: var(--input-bg);
-        border-color: var(--border);
-        border-radius: 10px;
-        color: var(--text);
-    }
-
-    div[data-baseweb="select"] > div:focus-within,
-    div[data-testid="stNumberInput"] input:focus {
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
-    }
-
-    label[data-testid="stWidgetLabel"] p {
-        color: var(--text);
-        font-size: 0.9rem;
-        font-weight: 700;
-    }
-
-    section[data-testid="stSidebar"] {
-        background: var(--surface-soft);
-        border-right: 1px solid var(--border);
-    }
-
-    section[data-testid="stSidebar"] .block-container {
-        padding-top: 1.75rem;
-    }
-
-    .stAlert {
-        border-radius: 12px;
-    }
-
-    .stProgress > div > div > div > div {
-        background: linear-gradient(90deg, #22c55e, #f59e0b, #ef4444);
-    }
-
-    div[data-testid="stExpander"] {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        overflow: hidden;
-    }
-
-    hr {
-        border-color: var(--border);
-        margin: 1.6rem 0;
-    }
-
-    .small-text {
-        color: var(--muted);
-        font-size: 0.88rem;
+        padding: 1rem 1.2rem;
+        margin-bottom: 1.5rem;
+        color: #475569;
         line-height: 1.6;
     }
 
-    @media (max-width: 760px) {
-        .block-container {
-            padding: 1rem 1rem 2rem;
-        }
 
-        .hero-panel {
-            border-radius: 14px;
-            padding: 1.2rem;
-        }
+    /* Model badge */
 
-        .info-box {
-            display: block;
-        }
+    .model-badge {
+        display: inline-block;
+        background-color: #EFF6FF;
+        color: #1D4ED8;
+        border: 1px solid #BFDBFE;
+        border-radius: 20px;
+        padding: 0.35rem 0.75rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-right: 0.4rem;
     }
+
+
+    /* Prediction cards */
+
+    .risk-low {
+        background-color: #F0FDF4;
+        border: 1px solid #86EFAC;
+        color: #166534;
+        padding: 1.2rem;
+        border-radius: 12px;
+        font-weight: 650;
+        font-size: 1.05rem;
+    }
+
+    .risk-moderate {
+        background-color: #FFFBEB;
+        border: 1px solid #FCD34D;
+        color: #92400E;
+        padding: 1.2rem;
+        border-radius: 12px;
+        font-weight: 650;
+        font-size: 1.05rem;
+    }
+
+    .risk-high {
+        background-color: #FFF7ED;
+        border: 1px solid #FDBA74;
+        color: #9A3412;
+        padding: 1.2rem;
+        border-radius: 12px;
+        font-weight: 650;
+        font-size: 1.05rem;
+    }
+
+    .risk-very-high {
+        background-color: #FEF2F2;
+        border: 1px solid #FCA5A5;
+        color: #991B1B;
+        padding: 1.2rem;
+        border-radius: 12px;
+        font-weight: 650;
+        font-size: 1.05rem;
+    }
+
+
+    /* Button */
+
+    .stButton > button {
+
+        width: 100%;
+        height: 3.2rem;
+
+        background-color: #0F172A;
+        color: white;
+
+        border: none;
+        border-radius: 9px;
+
+        font-size: 1rem;
+        font-weight: 650;
+
+    }
+
+    .stButton > button:hover {
+
+        background-color: #1E293B;
+        color: white;
+
+    }
+
+
+    /* Metric cards */
+
+    div[data-testid="stMetric"] {
+
+        background-color: #F8FAFC;
+
+        border: 1px solid #E2E8F0;
+
+        padding: 1rem;
+
+        border-radius: 12px;
+
+    }
+
+
+    /* Sidebar */
+
+    section[data-testid="stSidebar"] {
+
+        background-color: #F8FAFC;
+
+        border-right: 1px solid #E2E8F0;
+
+    }
+
+
+    /* Small text */
+
+    .small-text {
+
+        color: #64748B;
+
+        font-size: 0.86rem;
+
+        line-height: 1.5;
+
+    }
+
+
     </style>
     """,
     unsafe_allow_html=True
@@ -412,7 +249,7 @@ with st.sidebar:
 
     st.markdown(
         """
-        <div class="side-panel small-text">
+        <div class="small-text">
 
         This application estimates the probability
         that a telecom customer will churn.
@@ -440,16 +277,18 @@ with st.sidebar:
 
     st.markdown(
         """
-        <div class="flow-list">
-            <div class="flow-step">Customer Data</div>
-            <div class="flow-step">Feature Engineering</div>
-            <div class="flow-step">Preprocessing</div>
-            <div class="flow-step">Logistic Regression</div>
-            <div class="flow-step">Churn Probability</div>
-            <div class="flow-step">Risk Classification</div>
-        </div>
-        """,
-        unsafe_allow_html=True
+        Customer Data  
+        ↓  
+        Feature Engineering  
+        ↓  
+        Preprocessing  
+        ↓  
+        Logistic Regression  
+        ↓  
+        Churn Probability  
+        ↓  
+        Risk Classification
+        """
     )
 
     st.markdown("---")
@@ -465,14 +304,15 @@ with st.sidebar:
 # ============================================================
 
 st.markdown(
+    '<div class="main-title">Customer Churn Risk Analyzer</div>',
+    unsafe_allow_html=True
+)
+
+st.markdown(
     """
-    <div class="hero-panel">
-        <div class="eyebrow">Telecom retention intelligence</div>
-        <div class="main-title">Customer Churn Risk Analyzer</div>
-        <div class="subtitle">
-        Interactive churn-propensity scoring using the final
-        deployed machine-learning pipeline.
-        </div>
+    <div class="subtitle">
+    Interactive churn-propensity scoring using the final
+    deployed machine-learning pipeline.
     </div>
     """,
     unsafe_allow_html=True
@@ -482,11 +322,11 @@ st.markdown(
 st.markdown(
     """
     <div class="info-box">
-    <div><b>Ready to score.</b><br>
+
     Enter the customer's profile and service information.
     The system will generate a churn probability and compare
     it against the model's locked operating threshold.
-    </div>
+
     </div>
     """,
     unsafe_allow_html=True
