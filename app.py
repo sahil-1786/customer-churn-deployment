@@ -208,28 +208,6 @@ st.markdown(
         padding: 1rem;
     }
 
-    .inline-side-panel {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
-        margin: 0.25rem 0 1.3rem;
-        padding: 1rem;
-    }
-
-    .inline-panel-grid {
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    }
-
-    .inline-panel-title {
-        color: var(--text);
-        font-size: 0.96rem;
-        font-weight: 800;
-        margin-bottom: 0.65rem;
-    }
-
     .flow-list {
         color: var(--muted);
         display: grid;
@@ -405,9 +383,6 @@ st.markdown(
             display: block;
         }
 
-        .inline-panel-grid {
-            grid-template-columns: 1fr;
-        }
     }
     </style>
     """,
@@ -423,67 +398,74 @@ with st.sidebar:
 
     st.markdown("## Model Information")
 
-    st.write("")
-
-    st.markdown(
-        """
-        <span class="model-badge">
-        Logistic Regression
-        </span>
-        """,
-        unsafe_allow_html=True
+    show_model_details = st.toggle(
+        "Show side panel",
+        value=True
     )
 
-    st.write("")
+    if show_model_details:
 
-    st.markdown(
-        """
-        <div class="side-panel small-text">
+        st.write("")
 
-        This application estimates the probability
-        that a telecom customer will churn.
+        st.markdown(
+            """
+            <span class="model-badge">
+            Logistic Regression
+            </span>
+            """,
+            unsafe_allow_html=True
+        )
 
-        <br><br>
+        st.write("")
 
-        <b>Decision threshold:</b> 0.35
+        st.markdown(
+            """
+            <div class="side-panel small-text">
 
-        <br><br>
+            This application estimates the probability
+            that a telecom customer will churn.
 
-        <b>Final test ROC-AUC:</b> 0.8414
+            <br><br>
 
-        <br>
+            <b>Decision threshold:</b> 0.35
 
-        <b>Final test PR-AUC:</b> 0.6532
+            <br><br>
 
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+            <b>Final test ROC-AUC:</b> 0.8414
 
-    st.markdown("---")
+            <br>
 
-    st.markdown("### Prediction Flow")
+            <b>Final test PR-AUC:</b> 0.6532
 
-    st.markdown(
-        """
-        <div class="flow-list">
-            <div class="flow-step">Customer Data</div>
-            <div class="flow-step">Feature Engineering</div>
-            <div class="flow-step">Preprocessing</div>
-            <div class="flow-step">Logistic Regression</div>
-            <div class="flow-step">Churn Probability</div>
-            <div class="flow-step">Risk Classification</div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
-    st.markdown("---")
+        st.markdown("---")
 
-    st.caption(
-        "Portfolio deployment demonstrating "
-        "an end-to-end machine-learning prediction workflow."
-    )
+        st.markdown("### Prediction Flow")
+
+        st.markdown(
+            """
+            <div class="flow-list">
+                <div class="flow-step">Customer Data</div>
+                <div class="flow-step">Feature Engineering</div>
+                <div class="flow-step">Preprocessing</div>
+                <div class="flow-step">Logistic Regression</div>
+                <div class="flow-step">Churn Probability</div>
+                <div class="flow-step">Risk Classification</div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.markdown("---")
+
+        st.caption(
+            "Portfolio deployment demonstrating "
+            "an end-to-end machine-learning prediction workflow."
+        )
 
 
 # ============================================================
@@ -517,49 +499,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
-show_model_details = st.toggle(
-    "Show model details panel",
-    value=False
-)
-
-if show_model_details:
-
-    st.markdown(
-        """
-        <div class="inline-side-panel">
-            <div class="inline-panel-grid">
-                <div>
-                    <div class="inline-panel-title">Model Information</div>
-                    <span class="model-badge">Logistic Regression</span>
-                    <div class="small-text" style="margin-top:0.85rem;">
-                        This application estimates the probability
-                        that a telecom customer will churn.
-                        <br><br>
-                        <b>Decision threshold:</b> 0.35
-                        <br>
-                        <b>Final test ROC-AUC:</b> 0.8414
-                        <br>
-                        <b>Final test PR-AUC:</b> 0.6532
-                    </div>
-                </div>
-                <div>
-                    <div class="inline-panel-title">Prediction Flow</div>
-                    <div class="flow-list">
-                        <div class="flow-step">Customer Data</div>
-                        <div class="flow-step">Feature Engineering</div>
-                        <div class="flow-step">Preprocessing</div>
-                        <div class="flow-step">Logistic Regression</div>
-                        <div class="flow-step">Churn Probability</div>
-                        <div class="flow-step">Risk Classification</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
 
 # ============================================================
 # INPUT SECTION
