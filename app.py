@@ -62,7 +62,7 @@ st.markdown(
     .main-title {
         font-size: 2.6rem;
         font-weight: 750;
-        color: #0F172A;
+        color: #FFFFFF;
         margin-bottom: 0.2rem;
     }
 
